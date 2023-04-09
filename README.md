@@ -4,13 +4,13 @@
  * Conhecimento da ferramenta e seus conceitos e diferençãs do REST
     * Conhecimento de como utilizar o Graphql com Typescript
     * Conhecimento de como utilizar o Graphql com Nodejs
-    * Conhecimento de como utilizar o Graphql com Reactjs
+    * Conhecimento de como utilizar o Graphql com Vuejs
 
 ## Ferramentas utilizadas
     * Nodejs
     * Typescript
     * Graphql
-    * Reactjs
+    * Vuejs
 
 ## Pacotes Instalados:
 
