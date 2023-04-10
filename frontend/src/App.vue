@@ -44,7 +44,9 @@
           </div>
         </div>
         <br />
-        <h5>Domínios <span class="badge bg-primary"> {{ domains.length }} </span></h5>
+        <h5>
+          Domínios <span class="badge bg-primary"> {{ domains.length }} </span>
+        </h5>
         <div class="card">
           <div class="card-body">
             <ul class="list-group">
@@ -66,15 +68,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 
 export default {
-  name: "App",
-  data: function () {
-    return {
-      prefixos: ["Air", "Jet", "Flight"],
-      sufixos: ["Hub", "Station", "Mart"],
-      domains: ["AirHub", "JetStation", "FlightMart"]
-    };
-  },
-  components: {},
+	name: "App",
+	data: function () {
+		return {
+			prefixos: ["Air", "Jet", "Flight"],
+			sufixos: ["Hub", "Station", "Mart"],
+			domains: ["AirHub", "JetStation", "FlightMart"],
+		};
+	},
+	components: {},
 };
 </script>
 
