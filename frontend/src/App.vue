@@ -11,12 +11,23 @@
       <div class="container">
         <div class="row">
           <div class="col-md">
-            <h5>Prefixos <span class="badge bg-primary"> {{ prefixos.length }}</span></h5>
+            <h5>
+              Prefixos <span class="badge bg-primary"> {{ prefixos.length }}</span>
+            </h5>
             <div class="card">
               <div class="card-body">
                 <ul class="list-group">
                   <li class="list-group-item" v-for="prefixo in prefixos" :key="prefixo">
-                    {{ prefixo }}
+                    <div class="row">
+                      <div class="col-md d-flex align-items-center">
+                        {{ prefixo }}
+                      </div>
+                      <div class="col-md text-align-end">
+                        <button class="btn btn-primary" v-on:click="deletePrefixo(prefixo)">
+                          <span class="fa fa-trash"></span>
+                        </button>
+                      </div>
+                    </div>
                   </li>
                   <br />
                   <div class="input-group">
@@ -25,7 +36,7 @@
                       type="text"
                       placeholder="Digite o Prefixo"
                       v-model="newPrefixo"
-                      v-on:onkeyup.enter="addPrefixo"
+                      v-on:keyup.enter="addPrefixo"
                     />
                     <div class="input-group-append">
                       <button class="btn btn-primary" v-on:click="addPrefixo">
@@ -38,12 +49,23 @@
             </div>
           </div>
           <div class="col-md">
-            <h5>Sufixos <span class="badge bg-primary"> {{ sufixos.length }}</span></h5>
+            <h5>
+              Sufixos <span class="badge bg-primary"> {{ sufixos.length }}</span>
+            </h5>
             <div class="card">
               <div class="card-body">
                 <ul class="list-group">
                   <li class="list-group-item" v-for="sufixo in sufixos" :key="sufixo">
-                    {{ sufixo }}
+                    <div class="row">
+                      <div class="col-md d-flex align-items-center">
+                        {{ sufixo }}
+                      </div>
+                      <div class="col-md text-align-end">
+                        <button class="btn btn-primary" v-on:click="deleteSufixo(sufixo)">
+                          <span class="fa fa-trash"></span>
+                        </button>
+                      </div>
+                    </div>
                   </li>
                   <br />
                   <div class="input-group">
@@ -52,7 +74,7 @@
                       type="text"
                       placeholder="Digite o Sufixo"
                       v-model="newSufixo"
-                      v-on:onkeyup.enter="addSufixo"
+                      v-on:keyup.enter="addSufixo"
                     />
                     <div class="input-group-append">
                       <button class="btn btn-primary" v-on:click="addSufixo">
@@ -76,7 +98,6 @@
                 {{ domain }}
               </li>
               <br />
-              <input class="form-control" type="text" placeholder="Digite o Sufixo" />
             </ul>
           </div>
         </div>
@@ -105,14 +126,32 @@ export default {
 			if (this.newPrefixo !== "") {
 				this.prefixos.push(this.newPrefixo);
 				this.newPrefixo = "";
+				this.generateDomains();
 			}
 		},
 		addSufixo() {
 			if (this.newSufixo !== "") {
 				this.sufixos.push(this.newSufixo);
 				this.newSufixo = "";
+				this.generateDomains();
 			}
 		},
+		generateDomains() {
+			this.domains = [];
+			for (let prefixo of this.prefixos) {
+				for (let sufixo of this.sufixos) {
+					this.domains.push(prefixo + sufixo);
+				}
+			}
+		},
+		deletePrefixo(prefixo) {
+			this.prefixos.splice(this.prefixos.indexOf(prefixo), 1);
+			this.generateDomains();
+		},
+		deleteSufixo(sufixo) {
+			this.sufixos.splice(this.sufixos.indexOf(sufixo), 1);
+			this.generateDomains();
+		}
 	},
 	components: {},
 };
@@ -129,5 +168,11 @@ export default {
   background-color: #f1f1f1;
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.text-align-end {
+  text-align: end;
+  margin-right: -1px;
+  padding-right: 0px;
 }
 </style>
